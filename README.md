@@ -3,8 +3,12 @@
 > Sync AI agent skills across every IDE and activate per-stage rule sets — all from one command.
 
 [![npm version](https://img.shields.io/npm/v/skill-rules.svg)](https://www.npmjs.com/package/skill-rules)
+[![npm downloads](https://img.shields.io/npm/dm/skill-rules.svg)](https://www.npmjs.com/package/skill-rules)
+[![CI](https://github.com/carrilloapps/skill-rules/actions/workflows/ci.yml/badge.svg)](https://github.com/carrilloapps/skill-rules/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
 ---
 
@@ -413,3 +417,21 @@ See [CHANGELOG.md](./CHANGELOG.md).
 ## License
 
 [MIT](./LICENSE) © [José Carrillo](https://carrillo.app)
+
+---
+
+<div align="center">
+
+**Built by [José Carrillo](https://carrillo.app)**  
+Senior Fullstack Developer & Tech Lead
+
+[![Website](https://img.shields.io/badge/carrillo.app-000000?style=flat&logo=safari&logoColor=white)](https://carrillo.app)
+[![X](https://img.shields.io/badge/@carrilloapps-000000?style=flat&logo=x&logoColor=white)](https://x.com/carrilloapps)
+[![LinkedIn](https://img.shields.io/badge/carrilloapps-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/carrilloapps)
+[![Dev.to](https://img.shields.io/badge/carrilloapps-0A0A0A?style=flat&logo=devdotto&logoColor=white)](https://dev.to/carrilloapps)
+[![Medium](https://img.shields.io/badge/carrilloapps-12100E?style=flat&logo=medium&logoColor=white)](https://medium.com/@carrilloapps)
+[![YouTube](https://img.shields.io/badge/carrilloapps-FF0000?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/channel/uciwxfli0q78rqlmogbyve-g)
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/carrilloapps)
+
+</div>
