@@ -18,7 +18,7 @@ afterEach(() => {
 describe('IDES', () => {
   it('defines the expected IDE keys', () => {
     expect(Object.keys(IDES)).toEqual(
-      expect.arrayContaining(['claude', 'cursor', 'windsurf', 'openhands', 'agents'])
+      expect.arrayContaining(['claude', 'cursor', 'windsurf', 'openhands', 'opencode', 'agents'])
     )
   })
 
@@ -56,5 +56,13 @@ describe('detectIDEs', () => {
     mkdirSync(join(tmp, '.agents'))
     const found = detectIDEs(tmp)
     expect(found[0].id).toBe('agents')
+  })
+
+  it('detects opencode directory', () => {
+    mkdirSync(join(tmp, '.opencode'))
+    const found = detectIDEs(tmp)
+    expect(found).toHaveLength(1)
+    expect(found[0].id).toBe('opencode')
+    expect(found[0].skillsDir).toBe('.opencode/skills')
   })
 })

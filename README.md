@@ -31,13 +31,14 @@ sr use --off      # restore all skills, clear active stage
 
 ## Supported IDEs
 
-| IDE                                                   | Detected by   | Skills directory     |
-| ----------------------------------------------------- | ------------- | -------------------- |
-| Claude Code                                           | `.claude/`    | `.claude/skills/`    |
-| Cursor                                                | `.cursor/`    | `.cursor/skills/`    |
-| Windsurf                                              | `.windsurf/`  | `.windsurf/skills/`  |
-| OpenHands                                             | `.openhands/` | `.openhands/skills/` |
-| GitHub Copilot, Cline, VS Code, OpenCode, Codex, Kiro | `.agents/`    | `.agents/skills/`    |
+| IDE                                         | Detected by   | Skills directory     |
+| ------------------------------------------- | ------------- | -------------------- |
+| Claude Code                                 | `.claude/`    | `.claude/skills/`    |
+| Cursor                                      | `.cursor/`    | `.cursor/skills/`    |
+| Windsurf                                    | `.windsurf/`  | `.windsurf/skills/`  |
+| OpenHands                                   | `.openhands/` | `.openhands/skills/` |
+| OpenCode                                    | `.opencode/`  | `.opencode/skills/`  |
+| GitHub Copilot, Cline, VS Code, Codex, Kiro | `.agents/`    | `.agents/skills/`    |
 
 ---
 
@@ -117,6 +118,7 @@ flowchart TD
     SR --> WINDSURF[.windsurf/skills/]
     SR --> AGENTS[.agents/skills/]
     SR --> OH[.openhands/skills/]
+    SR --> OC[.opencode/skills/]
 ```
 
 ### Two files, two owners
@@ -399,7 +401,7 @@ your-project/
 ## Requirements
 
 - Node.js >= 20 (LTS)
-- At least one IDE directory (`.claude`, `.cursor`, `.windsurf`, `.agents`, or `.openhands`) at the project root
+- At least one IDE directory (`.claude`, `.cursor`, `.windsurf`, `.agents`, `.openhands`, or `.opencode`) at the project root
 
 ---
 

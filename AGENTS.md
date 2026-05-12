@@ -6,7 +6,7 @@ Context for AI coding agents working in this repository.
 
 `skill-rules` is a Node.js CLI (npm package) that synchronizes AI agent skills across multiple IDEs and activates per-stage rule sets with a single command. It is the tool that manages this very type of file across a developer's machines.
 
-Supported IDEs: Claude Code (`.claude/`), Cursor (`.cursor/`), Windsurf (`.windsurf/`), OpenHands (`.openhands/`), and the shared Agents directory (`.agents/`) used by GitHub Copilot, Cline, VS Code, OpenCode, Codex, and Kiro.
+Supported IDEs: Claude Code (`.claude/`), Cursor (`.cursor/`), Windsurf (`.windsurf/`), OpenHands (`.openhands/`), OpenCode (`.opencode/`), and the shared Agents directory (`.agents/`) used by GitHub Copilot, Cline, VS Code, Codex, and Kiro.
 
 ## Repository layout
 
@@ -125,7 +125,7 @@ Stores stashed skill directories. Each entry is a full copy of the original skil
 
 ### IDE detection (`ides.js`)
 
-Checks for `.claude`, `.cursor`, `.windsurf`, `.openhands`, `.agents` directories at `cwd`. Returns only the IDEs present. All commands operate on detected IDEs only.
+Checks for `.claude`, `.cursor`, `.windsurf`, `.openhands`, `.opencode`, `.agents` directories at `cwd`. Returns only the IDEs present. All commands operate on detected IDEs only.
 
 ### Sync (`commands/run.jsx` + `lib/syncer.js`)
 
@@ -145,7 +145,7 @@ For each active skill, find IDEs that have it. Copy the skill directory from the
 Maintains a `# skill-rules [start]` / `# skill-rules [end]` block. The block always includes:
 
 - `.skill-rules/` (local state)
-- Each IDE's `skillsDir` (e.g. `.claude/skills`)
+- Each detected IDE's `skillsDir` (e.g. `.claude/skills`, `.opencode/skills`)
 - Negation rules for tracked skills (e.g. `!.claude/skills/security-audit`)
 
 The block is replaced atomically on every `sr ignore` or `sr add --track`.

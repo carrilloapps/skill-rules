@@ -23,9 +23,14 @@ export const IDES = {
     detectDir: '.openhands',
     skillsDir: '.openhands/skills',
   },
+  opencode: {
+    name: 'OpenCode',
+    detectDir: '.opencode',
+    skillsDir: '.opencode/skills',
+  },
   agents: {
-    // Shared by: GitHub Copilot, Cline, VS Code, OpenCode, Codex, Kiro, and others
-    name: 'Agents (Copilot, Cline, VS Code, OpenCode, Codex, Kiro)',
+    // Shared by: GitHub Copilot, Cline, VS Code, Codex, Kiro, and others
+    name: 'Agents (Copilot, Cline, VS Code, Codex, Kiro)',
     detectDir: '.agents',
     skillsDir: '.agents/skills',
   },
