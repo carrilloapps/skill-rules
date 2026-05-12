@@ -14,21 +14,21 @@
     "dist"
   ],
   "dependencies": {
-    "@inkjs/ui": "^2.0.0",
-    "commander": "^12.1.0",
-    "figures": "^6.1.0",
-    "ink": "^5.2.1",
-    "react": "^18.3.1"
+    "@inkjs/ui": "~2.0.0",
+    "commander": "~12.1.0",
+    "figures": "~6.1.0",
+    "ink": "~5.2.1",
+    "react": "~18.3.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
-    "@vitest/coverage-v8": "^4.1.6",
-    "esbuild": "^0.28.0",
-    "eslint": "^9.7.0",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^15.0.0",
-    "prettier": "^3.8.3",
-    "vitest": "^4.1.6"
+    "@eslint/js": "~9.39.0",
+    "@vitest/coverage-v8": "~4.1.6",
+    "esbuild": "~0.28.0",
+    "eslint": "~9.39.0",
+    "eslint-plugin-react": "~7.37.5",
+    "globals": "~15.15.0",
+    "prettier": "~3.8.3",
+    "vitest": "~4.1.6"
   },
   "scripts": {
     "build": "node esbuild.config.js",

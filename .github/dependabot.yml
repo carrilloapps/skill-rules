@@ -1,0 +1,44 @@
+version: 2
+
+updates:
+  # npm — patch-level only (security fixes and bug fixes within the current minor)
+  # Major and minor bumps are ignored — use ~ ranges in package.json to enforce this
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+      day: monday
+      time: "09:00"
+      timezone: America/Mexico_City
+    versioning-strategy: lockfile-only
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-major
+          - version-update:semver-minor
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+
+  # GitHub Actions — minor/patch only (no major action version jumps)
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+      day: monday
+      time: "09:00"
+      timezone: America/Mexico_City
+    open-pull-requests-limit: 3
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-major
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "chore(ci)"
+      include: scope
