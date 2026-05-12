@@ -3,7 +3,13 @@ import { render, Box, Text, useApp } from 'ink'
 import { MultiSelect, TextInput } from '@inkjs/ui'
 import { detectIDEs } from '../lib/ides.js'
 import { readLock, writeLock, setSkillTracked } from '../lib/lock.js'
-import { readRules, writeRules, createEmptyRules, addSkillToStage, listStages } from '../lib/rules.js'
+import {
+  readRules,
+  writeRules,
+  createEmptyRules,
+  addSkillToStage,
+  listStages,
+} from '../lib/rules.js'
 import { syncGitignore } from '../lib/ignorer.js'
 import { Header, StatusLine, Hint, ListSelect } from '../ui.jsx'
 
@@ -23,7 +29,9 @@ export async function add(skill, options = {}) {
   if (stage) {
     if (!skill) {
       const { unmount } = render(
-        <Text color="red">Usage: skill-rules add {'<skill>'} --stage {'<name>'}</Text>
+        <Text color="red">
+          Usage: skill-rules add {'<skill>'} --stage {'<name>'}
+        </Text>
       )
       unmount()
       return
@@ -67,9 +75,7 @@ function runNonInteractive(cwd, skillName, stage, track) {
           </StatusLine>
         )}
         {isNewStage && !alreadyInStage && (
-          <StatusLine variant="info">
-            new stage [{stage}] created
-          </StatusLine>
+          <StatusLine variant="info">new stage [{stage}] created</StatusLine>
         )}
         <StatusLine variant={alreadyInStage ? 'info' : 'success'}>
           skills.rules [{stage}] — {alreadyInStage ? 'already present' : `added ${skillName}`}
@@ -117,8 +123,8 @@ function AddWizard({ cwd, preselected }) {
   const preselectedMissing = preselected && !skillNames.includes(preselected)
 
   if (step === 'select-skills') {
-    const options = skillNames.map(name => {
-      const skillStages = stages.filter(s => (rules?.stages[s] ?? []).includes(name))
+    const options = skillNames.map((name) => {
+      const skillStages = stages.filter((s) => (rules?.stages[s] ?? []).includes(name))
       return {
         label: `${name.padEnd(20)} ${skillStages.length ? skillStages.join(', ') : '—'}`,
         value: name,
@@ -128,7 +134,9 @@ function AddWizard({ cwd, preselected }) {
       <Box flexDirection="column" gap={1}>
         <Header>Add skills to stage</Header>
         {preselectedMissing && (
-          <StatusLine variant="warning">"{preselected}" not in skills-lock.json — install it first</StatusLine>
+          <StatusLine variant="warning">
+            "{preselected}" not in skills-lock.json — install it first
+          </StatusLine>
         )}
         <Box gap={4}>
           <Text dimColor>{'SKILL'.padEnd(20)}</Text>
@@ -138,25 +146,30 @@ function AddWizard({ cwd, preselected }) {
           options={options}
           defaultValue={preselected && skillNames.includes(preselected) ? [preselected] : []}
           onSubmit={(values) => {
-            if (values.length === 0) { exit(); return }
+            if (values.length === 0) {
+              exit()
+              return
+            }
             setSelectedSkills(values)
             setStep('select-stage')
           }}
         />
-        <Hint>Space toggle  ·  Enter confirm  ·  0 selected = cancel</Hint>
+        <Hint>Space toggle · Enter confirm · 0 selected = cancel</Hint>
       </Box>
     )
   }
 
   if (step === 'select-stage') {
     const stageOptions = [
-      ...stages.map(s => ({ label: s, value: s })),
+      ...stages.map((s) => ({ label: s, value: s })),
       { label: '+ Create new stage…', value: NEW_STAGE },
     ]
     return (
       <Box flexDirection="column" gap={1}>
         <Header>Select stage</Header>
-        <Text dimColor>Skills: <Text color="cyan">{selectedSkills.join(', ')}</Text></Text>
+        <Text dimColor>
+          Skills: <Text color="cyan">{selectedSkills.join(', ')}</Text>
+        </Text>
         <ListSelect
           options={stageOptions}
           onSelect={(value) => {
@@ -168,7 +181,7 @@ function AddWizard({ cwd, preselected }) {
             }
           }}
         />
-        <Hint>↑↓ navigate  ·  Enter confirm</Hint>
+        <Hint>↑↓ navigate · Enter confirm</Hint>
       </Box>
     )
   }
@@ -214,7 +227,7 @@ function AddWizard({ cwd, preselected }) {
             setStep('done')
           }}
         />
-        <Hint>↑↓ navigate  ·  Enter confirm</Hint>
+        <Hint>↑↓ navigate · Enter confirm</Hint>
       </Box>
     )
   }
@@ -223,7 +236,7 @@ function AddWizard({ cwd, preselected }) {
     return (
       <Box flexDirection="column" gap={1}>
         <Header>Done</Header>
-        {summary.skills.map(name => (
+        {summary.skills.map((name) => (
           <StatusLine key={name} variant="success">
             {name} → [{summary.stage}]{summary.track ? ' · tracked in git' : ''}
           </StatusLine>

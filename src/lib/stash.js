@@ -17,8 +17,8 @@ export function listStashed(cwd) {
   const stashDir = join(cwd, STASH_DIR)
   if (!existsSync(stashDir)) return []
   return readdirSync(stashDir, { withFileTypes: true })
-    .filter(e => e.isDirectory())
-    .map(e => e.name)
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name)
 }
 
 // Copies skill from first IDE that has it to stash, then removes from all IDEs
@@ -26,7 +26,7 @@ export function stashSkill(cwd, ides, skillName) {
   const dest = stashSkillPath(cwd, skillName)
   if (existsSync(dest)) return
 
-  const source = ides.find(ide => {
+  const source = ides.find((ide) => {
     const p = join(cwd, ide.skillsDir, skillName)
     return existsSync(p) && statSync(p).isDirectory()
   })

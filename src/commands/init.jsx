@@ -16,7 +16,7 @@ export async function init() {
     const { unmount } = render(
       <Box flexDirection="column" gap={1}>
         <StatusLine variant="warning">No IDE directories detected.</StatusLine>
-        <Text dimColor>Create one of: .claude/  .cursor/  .windsurf/  .agents/  .openhands/</Text>
+        <Text dimColor>Create one of: .claude/ .cursor/ .windsurf/ .agents/ .openhands/</Text>
       </Box>
     )
     unmount()
@@ -42,23 +42,31 @@ export async function init() {
 
       <Box flexDirection="column">
         <Text dimColor>IDEs detected ({ides.length})</Text>
-        {ides.map(ide => <IDEItem key={ide.id} ide={ide} />)}
+        {ides.map((ide) => (
+          <IDEItem key={ide.id} ide={ide} />
+        ))}
       </Box>
 
       <Box flexDirection="column">
         <StatusLine variant={lockExists ? 'info' : 'success'}>
-          skills-lock.json{lockExists ? ` — already exists (${skillCount} skill${skillCount !== 1 ? 's' : ''})` : ' — created'}
+          skills-lock.json
+          {lockExists
+            ? ` — already exists (${skillCount} skill${skillCount !== 1 ? 's' : ''})`
+            : ' — created'}
         </StatusLine>
         <StatusLine variant={rulesExists ? 'info' : 'success'}>
-          skills.rules{rulesExists ? ` — already exists (stages: ${stages.join(', ') || 'none'})` : ' — created (empty)'}
+          skills.rules
+          {rulesExists
+            ? ` — already exists (stages: ${stages.join(', ') || 'none'})`
+            : ' — created (empty)'}
         </StatusLine>
         <StatusLine variant="success">.gitignore — updated</StatusLine>
       </Box>
 
       <Box flexDirection="column">
-        <Hint>1. Install skills:  skills.sh or autoskill</Hint>
-        <Hint>2. Assign stages:  skill-rules add</Hint>
-        <Hint>3. Sync IDEs:      npx skill-rules</Hint>
+        <Hint>1. Install skills: skills.sh or autoskill</Hint>
+        <Hint>2. Assign stages: skill-rules add</Hint>
+        <Hint>3. Sync IDEs: npx skill-rules</Hint>
       </Box>
     </Box>
   )

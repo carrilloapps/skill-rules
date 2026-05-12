@@ -49,9 +49,7 @@ describe('detectIDEs', () => {
     mkdirSync(join(tmp, '.windsurf'))
     const found = detectIDEs(tmp)
     expect(found).toHaveLength(3)
-    expect(found.map((i) => i.id)).toEqual(
-      expect.arrayContaining(['claude', 'cursor', 'windsurf'])
-    )
+    expect(found.map((i) => i.id)).toEqual(expect.arrayContaining(['claude', 'cursor', 'windsurf']))
   })
 
   it('includes id field in each result', () => {

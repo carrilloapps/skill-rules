@@ -3,23 +3,23 @@ import { Box, Text, useInput } from 'ink'
 import figures from 'figures'
 
 const STATUS_ICON = {
-  ok:      figures.tick,
+  ok: figures.tick,
   success: figures.tick,
   missing: figures.cross,
-  error:   figures.cross,
-  synced:  figures.bullet,
+  error: figures.cross,
+  synced: figures.bullet,
   warning: figures.warning,
-  info:    figures.info,
+  info: figures.info,
 }
 
 const STATUS_COLOR = {
-  ok:      'green',
+  ok: 'green',
   success: 'green',
   missing: 'red',
-  error:   'red',
-  synced:  'yellow',
+  error: 'red',
+  synced: 'yellow',
   warning: 'yellow',
-  info:    'cyan',
+  info: 'cyan',
 }
 
 export function Header({ children }) {
@@ -60,15 +60,15 @@ export function StatusLine({ variant, children }) {
 }
 
 export function Hint({ children }) {
-  return <Text dimColor>  {children}</Text>
+  return <Text dimColor> {children}</Text>
 }
 
 export function ListSelect({ options, onSelect }) {
   const [index, setIndex] = useState(0)
 
   useInput((_, key) => {
-    if (key.upArrow) setIndex(i => Math.max(0, i - 1))
-    else if (key.downArrow) setIndex(i => Math.min(options.length - 1, i + 1))
+    if (key.upArrow) setIndex((i) => Math.max(0, i - 1))
+    else if (key.downArrow) setIndex((i) => Math.min(options.length - 1, i + 1))
     else if (key.return) onSelect(options[index].value)
   })
 

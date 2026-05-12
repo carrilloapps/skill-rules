@@ -126,7 +126,7 @@ Please use [GitHub Issues](https://github.com/carrilloapps/skill-rules/issues). 
 - ESM only — no CommonJS
 - No TypeScript compilation, but JSDoc types are welcome on public functions
 - Unit tests live in `test/lib/` and cover all `src/lib/` modules at 100% — run with `npm test`
-- No comments unless the *why* is non-obvious (a workaround, a hidden invariant)
+- No comments unless the _why_ is non-obvious (a workaround, a hidden invariant)
 - Keep UI messages consistent with existing tone: lowercase, concise, no punctuation at line end
 
 ---

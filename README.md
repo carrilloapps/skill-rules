@@ -31,13 +31,13 @@ sr use --off      # restore all skills, clear active stage
 
 ## Supported IDEs
 
-| IDE | Detected by | Skills directory |
-|-----|-------------|-----------------|
-| Claude Code | `.claude/` | `.claude/skills/` |
-| Cursor | `.cursor/` | `.cursor/skills/` |
-| Windsurf | `.windsurf/` | `.windsurf/skills/` |
-| OpenHands | `.openhands/` | `.openhands/skills/` |
-| GitHub Copilot, Cline, VS Code, OpenCode, Codex, Kiro | `.agents/` | `.agents/skills/` |
+| IDE                                                   | Detected by   | Skills directory     |
+| ----------------------------------------------------- | ------------- | -------------------- |
+| Claude Code                                           | `.claude/`    | `.claude/skills/`    |
+| Cursor                                                | `.cursor/`    | `.cursor/skills/`    |
+| Windsurf                                              | `.windsurf/`  | `.windsurf/skills/`  |
+| OpenHands                                             | `.openhands/` | `.openhands/skills/` |
+| GitHub Copilot, Cline, VS Code, OpenCode, Codex, Kiro | `.agents/`    | `.agents/skills/`    |
 
 ---
 
@@ -55,6 +55,7 @@ Both `skill-rules` and `sr` are available as aliases after installation.
 
 > **Using with `npx` (no install required)**
 > Every command that uses `sr` in this documentation can be replaced with `npx skill-rules`:
+>
 > ```bash
 > npx skill-rules init
 > npx skill-rules add
@@ -120,10 +121,10 @@ flowchart TD
 
 ### Two files, two owners
 
-| File | Managed by | Purpose |
-|------|-----------|---------|
+| File               | Managed by                | Purpose                                                           |
+| ------------------ | ------------------------- | ----------------------------------------------------------------- |
 | `skills-lock.json` | `autoskill` / `skills.sh` | Records which skills are installed and which are committed to git |
-| `skills.rules` | `skill-rules` | Records which skills belong to which stage |
+| `skills.rules`     | `skill-rules`             | Records which skills belong to which stage                        |
 
 `skill-rules` never installs or updates skills — that is the responsibility of your installer. It only reads from `skills-lock.json` and syncs across IDEs.
 
@@ -250,13 +251,13 @@ If no skills need to be stashed, the command executes without asking for confirm
 
 **Rules:**
 
-| Skill | Behaviour |
-|-------|-----------|
-| In target stage | Synced to all IDEs (restored from stash if needed) |
-| In another stage, not target | Moved to stash (removed from IDEs) |
-| In multiple stages including target | Left active |
-| No stage assigned | Never touched — always available |
-| Tracked in git | Never touched — always available |
+| Skill                               | Behaviour                                          |
+| ----------------------------------- | -------------------------------------------------- |
+| In target stage                     | Synced to all IDEs (restored from stash if needed) |
+| In another stage, not target        | Moved to stash (removed from IDEs)                 |
+| In multiple stages including target | Left active                                        |
+| No stage assigned                   | Never touched — always available                   |
+| Tracked in git                      | Never touched — always available                   |
 
 ---
 

@@ -42,13 +42,13 @@ function buildPlan(cwd, stage, ides, lock, rules) {
       if (isStashed(cwd, skill)) {
         toRestore.push(skill)
       } else {
-        const inIDEs = ides.some(ide => existsSync(join(cwd, ide.skillsDir, skill)))
+        const inIDEs = ides.some((ide) => existsSync(join(cwd, ide.skillsDir, skill)))
         if (inIDEs) toActivate.push(skill)
         else toMissing.push(skill)
       }
     } else {
       if (!isStashed(cwd, skill)) {
-        const inIDEs = ides.some(ide => existsSync(join(cwd, ide.skillsDir, skill)))
+        const inIDEs = ides.some((ide) => existsSync(join(cwd, ide.skillsDir, skill)))
         if (inIDEs) toStash.push(skill)
       }
     }
@@ -93,7 +93,10 @@ function UseWizard({ cwd, stage, off }) {
         return
       }
       if (ides.length === 0) {
-        setData({ mode: 'error', error: 'No IDE directories detected — cannot restore stashed skills.' })
+        setData({
+          mode: 'error',
+          error: 'No IDE directories detected — cannot restore stashed skills.',
+        })
         setStep('done')
         return
       }
@@ -111,7 +114,11 @@ function UseWizard({ cwd, stage, off }) {
 
     // Use <stage> mode
     if (ides.length === 0) {
-      setData({ mode: 'error', error: 'No IDE directories detected.\nExpected: .claude/  .cursor/  .windsurf/  .agents/  .openhands/' })
+      setData({
+        mode: 'error',
+        error:
+          'No IDE directories detected.\nExpected: .claude/  .cursor/  .windsurf/  .agents/  .openhands/',
+      })
       setStep('done')
       return
     }
@@ -175,17 +182,20 @@ function UseWizard({ cwd, stage, off }) {
             { label: 'Cancel', value: 'no' },
           ]}
           onSelect={(value) => {
-            if (value === 'no') { exit(); return }
+            if (value === 'no') {
+              exit()
+              return
+            }
             try {
               executePlan(cwd, targetStage, ideList, lockData, plan)
               setStep('done')
             } catch (err) {
-              setData(d => ({ ...d, mode: 'error', error: err.message }))
+              setData((d) => ({ ...d, mode: 'error', error: err.message }))
               setStep('done')
             }
           }}
         />
-        <Hint>↑↓ navigate  ·  Enter confirm</Hint>
+        <Hint>↑↓ navigate · Enter confirm</Hint>
       </Box>
     )
   }
@@ -201,20 +211,33 @@ function PlanPreview({ plan }) {
   const { toActivate, toRestore, toMissing, toStash, toSkip } = plan
   return (
     <Box flexDirection="column">
-      {toActivate.map(s => (
-        <StatusLine key={s} variant="ok">{'keep    '} {s}</StatusLine>
+      {toActivate.map((s) => (
+        <StatusLine key={s} variant="ok">
+          {'keep    '} {s}
+        </StatusLine>
       ))}
-      {toRestore.map(s => (
-        <StatusLine key={s} variant="success">{'restore '} {s}<Text dimColor>  (from stash)</Text></StatusLine>
+      {toRestore.map((s) => (
+        <StatusLine key={s} variant="success">
+          {'restore '} {s}
+          <Text dimColor> (from stash)</Text>
+        </StatusLine>
       ))}
-      {toMissing.map(s => (
-        <StatusLine key={s} variant="warning">{'missing '} {s}<Text dimColor>  (not installed)</Text></StatusLine>
+      {toMissing.map((s) => (
+        <StatusLine key={s} variant="warning">
+          {'missing '} {s}
+          <Text dimColor> (not installed)</Text>
+        </StatusLine>
       ))}
-      {toStash.map(s => (
-        <StatusLine key={s} variant="warning">{'stash   '} {s}</StatusLine>
+      {toStash.map((s) => (
+        <StatusLine key={s} variant="warning">
+          {'stash   '} {s}
+        </StatusLine>
       ))}
-      {toSkip.map(s => (
-        <StatusLine key={s} variant="info">{'skip    '} {s}<Text dimColor>  (tracked in git)</Text></StatusLine>
+      {toSkip.map((s) => (
+        <StatusLine key={s} variant="info">
+          {'skip    '} {s}
+          <Text dimColor> (tracked in git)</Text>
+        </StatusLine>
       ))}
     </Box>
   )
@@ -243,7 +266,11 @@ function DoneView({ data }) {
     return (
       <Box flexDirection="column" gap={1}>
         <Header>Done</Header>
-        {stashed.map(s => <StatusLine key={s} variant="success">restored  {s}</StatusLine>)}
+        {stashed.map((s) => (
+          <StatusLine key={s} variant="success">
+            restored {s}
+          </StatusLine>
+        ))}
         <Text dimColor>No active stage — all skills available.</Text>
       </Box>
     )
@@ -257,7 +284,7 @@ function DoneView({ data }) {
         <Box flexDirection="column" gap={1}>
           <StatusLine variant="info">No active stage — all skills available.</StatusLine>
           {stages.length > 0 && (
-            <Text dimColor>Run: skill-rules use {'<stage>'}  to activate one</Text>
+            <Text dimColor>Run: skill-rules use {'<stage>'} to activate one</Text>
           )}
         </Box>
       )
@@ -267,9 +294,11 @@ function DoneView({ data }) {
         <Header>skill-rules use</Header>
         <StatusLine variant="success">Active stage: [{currentStage}]</StatusLine>
         {stashed.length > 0 && (
-          <Text dimColor>Stashed ({stashed.length}): {stashed.join(', ')}</Text>
+          <Text dimColor>
+            Stashed ({stashed.length}): {stashed.join(', ')}
+          </Text>
         )}
-        <Text dimColor>Run: skill-rules use --off  to restore all</Text>
+        <Text dimColor>Run: skill-rules use --off to restore all</Text>
       </Box>
     )
   }
@@ -280,14 +309,33 @@ function DoneView({ data }) {
     return (
       <Box flexDirection="column" gap={1}>
         <Header>Done</Header>
-        {toActivate.map(s => <StatusLine key={s} variant="ok">active    {s}</StatusLine>)}
-        {toRestore.map(s => <StatusLine key={s} variant="success">restored  {s}</StatusLine>)}
-        {toStash.map(s => <StatusLine key={s} variant="warning">stashed   {s}</StatusLine>)}
-        {toMissing.map(s => (
-          <StatusLine key={s} variant="warning">missing   {s}<Text dimColor>  — install via skills.sh or autoskill</Text></StatusLine>
+        {toActivate.map((s) => (
+          <StatusLine key={s} variant="ok">
+            active {s}
+          </StatusLine>
         ))}
-        {toSkip.map(s => <StatusLine key={s} variant="info">tracked   {s}</StatusLine>)}
-        <Text dimColor>Active stage: [{stage}]  ·  Run skill-rules to sync IDEs</Text>
+        {toRestore.map((s) => (
+          <StatusLine key={s} variant="success">
+            restored {s}
+          </StatusLine>
+        ))}
+        {toStash.map((s) => (
+          <StatusLine key={s} variant="warning">
+            stashed {s}
+          </StatusLine>
+        ))}
+        {toMissing.map((s) => (
+          <StatusLine key={s} variant="warning">
+            missing {s}
+            <Text dimColor> — install via skills.sh or autoskill</Text>
+          </StatusLine>
+        ))}
+        {toSkip.map((s) => (
+          <StatusLine key={s} variant="info">
+            tracked {s}
+          </StatusLine>
+        ))}
+        <Text dimColor>Active stage: [{stage}] · Run skill-rules to sync IDEs</Text>
       </Box>
     )
   }

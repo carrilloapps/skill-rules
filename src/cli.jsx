@@ -64,10 +64,7 @@ export function createCli() {
     .option('--off', 'restore all stashed skills and clear the active stage')
     .action(use)
 
-  program
-    .command('help')
-    .description('Show help for all commands')
-    .action(help)
+  program.command('help').description('Show help for all commands').action(help)
 
   return program
 }

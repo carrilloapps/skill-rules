@@ -15,10 +15,7 @@ afterEach(() => {
   rmSync(tmp, { recursive: true, force: true })
 })
 
-const fakeIdes = [
-  { skillsDir: '.claude/skills' },
-  { skillsDir: '.cursor/skills' },
-]
+const fakeIdes = [{ skillsDir: '.claude/skills' }, { skillsDir: '.cursor/skills' }]
 
 describe('buildIgnorePatterns', () => {
   it('includes .skill-rules/ first', () => {

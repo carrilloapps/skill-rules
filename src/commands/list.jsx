@@ -39,7 +39,8 @@ function ListUI({ track, untrack }) {
     setTimeout(exit, 0)
     return (
       <StatusLine variant={track ? 'success' : 'warning'}>
-        {track ? 'Tracking' : 'Ignoring'} {skillName}{track ? ' — will be committed to git' : ' — excluded from git'}
+        {track ? 'Tracking' : 'Ignoring'} {skillName}
+        {track ? ' — will be committed to git' : ' — excluded from git'}
       </StatusLine>
     )
   }
@@ -50,7 +51,16 @@ function ListUI({ track, untrack }) {
     return <Text dimColor>No skills yet. Run: skill-rules add</Text>
   }
 
-  return <InteractiveList skills={skills} stages={stages} rules={rules} ides={ides} lock={lock} cwd={cwd} />
+  return (
+    <InteractiveList
+      skills={skills}
+      stages={stages}
+      rules={rules}
+      ides={ides}
+      lock={lock}
+      cwd={cwd}
+    />
+  )
 }
 
 function InteractiveList({ skills, stages, rules, ides, lock, cwd }) {
@@ -62,8 +72,13 @@ function InteractiveList({ skills, stages, rules, ides, lock, cwd }) {
 
   const options = skills.map(([name, info]) => {
     const sources = findSkillSources(cwd, ides, name)
-    const skillStages = stages.filter(s => (rules?.stages[s] ?? []).includes(name))
-    const installedLabel = sources.length === 0 ? 'not installed' : sources.length === ides.length ? 'all IDEs' : sources.map(s => s.name).join(', ')
+    const skillStages = stages.filter((s) => (rules?.stages[s] ?? []).includes(name))
+    const installedLabel =
+      sources.length === 0
+        ? 'not installed'
+        : sources.length === ides.length
+          ? 'all IDEs'
+          : sources.map((s) => s.name).join(', ')
     const stageLabel = skillStages.length > 0 ? skillStages.join(', ') : '—'
     return {
       label: `${name.padEnd(18)} ${stageLabel.padEnd(14)} ${installedLabel}`,
@@ -113,9 +128,12 @@ function InteractiveList({ skills, stages, rules, ides, lock, cwd }) {
         <Text dimColor>{'STAGES'.padEnd(14)}</Text>
         <Text dimColor>INSTALLED</Text>
       </Box>
-      <Text dimColor>Select skills to <Text color="green">track in git</Text> (checked = committed, unchecked = gitignored)</Text>
+      <Text dimColor>
+        Select skills to <Text color="green">track in git</Text> (checked = committed, unchecked =
+        gitignored)
+      </Text>
       <MultiSelect options={options} defaultValue={initialTracked} onSubmit={handleSubmit} />
-      <Hint>Space to toggle  ·  Enter to confirm  ·  tracked skills won't be in .gitignore</Hint>
+      <Hint>Space to toggle · Enter to confirm · tracked skills won't be in .gitignore</Hint>
     </Box>
   )
 }

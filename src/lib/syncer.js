@@ -20,7 +20,9 @@ export function syncSkillToMissingIDEs(cwd, ides, skillName, sourceIde) {
         copyDirSync(sourcePath, targetPath)
         copied++
       } catch (err) {
-        throw new Error(`Could not sync "${skillName}" to ${ide.name}: ${err.message}`, { cause: err })
+        throw new Error(`Could not sync "${skillName}" to ${ide.name}: ${err.message}`, {
+          cause: err,
+        })
       }
     }
   }

@@ -33,7 +33,7 @@ function runNonInteractive(cwd, skillName, stage) {
   }
 
   const stages = listStages(rules)
-  const inAnyStage = stages.some(s => (rules.stages[s] ?? []).includes(skillName))
+  const inAnyStage = stages.some((s) => (rules.stages[s] ?? []).includes(skillName))
   if (!inAnyStage) {
     const { unmount } = render(
       <StatusLine variant="warning">"{skillName}" is not assigned to any stage.</StatusLine>
@@ -43,7 +43,7 @@ function runNonInteractive(cwd, skillName, stage) {
   }
 
   if (stage && !(rules.stages[stage] ?? []).includes(skillName)) {
-    const assignedTo = stages.filter(s => (rules.stages[s] ?? []).includes(skillName))
+    const assignedTo = stages.filter((s) => (rules.stages[s] ?? []).includes(skillName))
     const { unmount } = render(
       <StatusLine variant="warning">
         "{skillName}" is not in [{stage}]. Assigned to: {assignedTo.join(', ')}
@@ -63,9 +63,7 @@ function runNonInteractive(cwd, skillName, stage) {
   const { unmount } = render(
     <Box flexDirection="column" gap={1}>
       <Header>skill-rules remove {skillName}</Header>
-      <StatusLine variant="success">
-        Removed from {stage ? `[${stage}]` : 'all stages'}
-      </StatusLine>
+      <StatusLine variant="success">Removed from {stage ? `[${stage}]` : 'all stages'}</StatusLine>
       {ides.length > 0 && <StatusLine variant="success">.gitignore — updated</StatusLine>}
     </Box>
   )
@@ -100,8 +98,8 @@ function RemoveWizard({ cwd }) {
   }
 
   if (step === 'select-skills') {
-    const options = stagedSkills.map(name => {
-      const skillStages = stages.filter(s => (rules.stages[s] ?? []).includes(name))
+    const options = stagedSkills.map((name) => {
+      const skillStages = stages.filter((s) => (rules.stages[s] ?? []).includes(name))
       return {
         label: `${name.padEnd(20)} ${skillStages.join(', ')}`,
         value: name,
@@ -117,28 +115,33 @@ function RemoveWizard({ cwd }) {
         <MultiSelect
           options={options}
           onSubmit={(values) => {
-            if (values.length === 0) { exit(); return }
+            if (values.length === 0) {
+              exit()
+              return
+            }
             setSelectedSkills(values)
             setStep('select-stage')
           }}
         />
-        <Hint>Space toggle  ·  Enter confirm  ·  0 selected = cancel</Hint>
+        <Hint>Space toggle · Enter confirm · 0 selected = cancel</Hint>
       </Box>
     )
   }
 
   if (step === 'select-stage') {
-    const relevantStages = stages.filter(s =>
-      selectedSkills.some(skill => (rules.stages[s] ?? []).includes(skill))
+    const relevantStages = stages.filter((s) =>
+      selectedSkills.some((skill) => (rules.stages[s] ?? []).includes(skill))
     )
     const stageOptions = [
-      ...relevantStages.map(s => ({ label: s, value: s })),
+      ...relevantStages.map((s) => ({ label: s, value: s })),
       { label: 'All stages', value: ALL_STAGES },
     ]
     return (
       <Box flexDirection="column" gap={1}>
         <Header>Remove from which stage?</Header>
-        <Text dimColor>Skills: <Text color="cyan">{selectedSkills.join(', ')}</Text></Text>
+        <Text dimColor>
+          Skills: <Text color="cyan">{selectedSkills.join(', ')}</Text>
+        </Text>
         <ListSelect
           options={stageOptions}
           onSelect={(value) => {
@@ -148,7 +151,7 @@ function RemoveWizard({ cwd }) {
             setStep('done')
           }}
         />
-        <Hint>↑↓ navigate  ·  Enter confirm</Hint>
+        <Hint>↑↓ navigate · Enter confirm</Hint>
       </Box>
     )
   }
@@ -157,7 +160,7 @@ function RemoveWizard({ cwd }) {
     return (
       <Box flexDirection="column" gap={1}>
         <Header>Done</Header>
-        {summary.skills.map(name => (
+        {summary.skills.map((name) => (
           <StatusLine key={name} variant="success">
             {name} removed from {summary.stage === ALL_STAGES ? 'all stages' : `[${summary.stage}]`}
           </StatusLine>
