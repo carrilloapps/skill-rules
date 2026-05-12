@@ -6,7 +6,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/skill-rules.svg)](https://www.npmjs.com/package/skill-rules)
 [![CI](https://github.com/carrilloapps/skill-rules/actions/workflows/ci.yml/badge.svg)](https://github.com/carrilloapps/skill-rules/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D20-brightgreen)](https://nodejs.org)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
@@ -398,7 +398,7 @@ your-project/
 
 ## Requirements
 
-- Node.js >= 18
+- Node.js >= 20 (LTS)
 - At least one IDE directory (`.claude`, `.cursor`, `.windsurf`, `.agents`, or `.openhands`) at the project root
 
 ---
