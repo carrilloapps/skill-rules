@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "ai-rules": {
+      "source": "carrilloapps/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ai-rules/SKILL.md",
+      "computedHash": "238efbd22014ac3ecdeab654e1c1be29657cba2d6acab16b21d2576fee014f3a"
+    },
+    "brainstorming": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/brainstorming/SKILL.md",
+      "computedHash": "f483c304fcde060211ffae00f49bb728536e7e7613c99db45b5b924d9fc17243"
+    },
+    "changelog-generator": {
+      "source": "composiohq/awesome-claude-skills",
+      "sourceType": "github",
+      "skillPath": "changelog-generator/SKILL.md",
+      "computedHash": "f84bcb773a67ade28878d63103e3d4dc1f5031d6103be5107ff99c15b8d4a992"
+    }
+  }
+}
