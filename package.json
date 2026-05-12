@@ -69,7 +69,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/carrilloapps/skill-rules.git"
+    "url": "git+https://github.com/carrilloapps/skill-rules.git"
   },
   "homepage": "https://github.com/carrilloapps/skill-rules#readme",
   "bugs": {
