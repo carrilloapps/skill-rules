@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.3.0] — 2026-05-12
+
+### Added
+
+- **Built-in MCP server** — `sr mcp` / `npx skill-rules mcp` starts a stdio MCP server exposing all operations as tools: `sync`, `status`, `init`, `add`, `remove`, `use`, `list`, `ignore`
+- Configure in Claude Code via `.mcp.json` with `npx skill-rules mcp` — zero install required
+
+---
+
 ## [0.2.0] — 2026-05-12
 
 ### Added
@@ -43,6 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Git tracking — individual skills can be committed to the repository via `--track` or `sr list`
 - `sr` short alias registered alongside `skill-rules` in `package.json` bin
 
-[Unreleased]: https://github.com/carrilloapps/skill-rules/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/carrilloapps/skill-rules/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/carrilloapps/skill-rules/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/carrilloapps/skill-rules/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/carrilloapps/skill-rules/releases/tag/v0.1.0
