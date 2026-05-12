@@ -10,6 +10,7 @@ import { ignore } from './commands/ignore.jsx'
 import { help } from './commands/help.jsx'
 import { remove } from './commands/remove.jsx'
 import { use } from './commands/use.jsx'
+import { mcp } from './commands/mcp.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const { version } = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8'))
@@ -65,6 +66,11 @@ export function createCli() {
     .action(use)
 
   program.command('help').description('Show help for all commands').action(help)
+
+  program
+    .command('mcp')
+    .description('Start the skill-rules MCP server (stdio transport)')
+    .action(mcp)
 
   return program
 }

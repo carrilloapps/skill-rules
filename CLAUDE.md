@@ -26,17 +26,20 @@ Run `npm run build && npm run lint && npm run format:check && npm run test:cover
 ```
 src/
 ├── index.jsx          # entry point — parseAsync(process.argv)
-├── cli.jsx            # commander setup, all 8 commands registered
+├── cli.jsx            # commander setup, all commands registered
 ├── ui.jsx             # shared Ink components: Header, StatusLine, ListSelect, Hint, IDEItem, SkillStatus
-└── commands/
-    ├── run.jsx        # default command (sr) — sync active skills
-    ├── init.jsx       # sr init
-    ├── add.jsx        # sr add [skill]
-    ├── remove.jsx     # sr remove [skill]
-    ├── use.jsx        # sr use [stage]
-    ├── list.jsx       # sr list
-    ├── ignore.jsx     # sr ignore
-    └── help.jsx       # sr help
+├── commands/
+│   ├── run.jsx        # default command (sr) — sync active skills
+│   ├── init.jsx       # sr init
+│   ├── add.jsx        # sr add [skill]
+│   ├── remove.jsx     # sr remove [skill]
+│   ├── use.jsx        # sr use [stage]
+│   ├── list.jsx       # sr list
+│   ├── ignore.jsx     # sr ignore
+│   ├── help.jsx       # sr help
+│   └── mcp.js         # sr mcp — starts MCP server
+└── mcp/
+    └── server.js      # MCP server: 8 tools, stdio transport, no Ink
 
 src/lib/               # pure logic, no Ink — 100% unit tested
     ides.js            # IDES constant + detectIDEs(cwd)

@@ -304,6 +304,60 @@ sr use --help
 
 ---
 
+## MCP Server
+
+`skill-rules` ships a built-in [Model Context Protocol](https://modelcontextprotocol.io) server so Claude (or any MCP-compatible agent) can manage your skills directly — no terminal required.
+
+```bash
+sr mcp                     # start with global install
+npx skill-rules mcp        # start without installing
+```
+
+The server uses **stdio transport** and runs in the project directory where it is started. It exposes the following tools:
+
+| Tool     | Description                                                            |
+| -------- | ---------------------------------------------------------------------- |
+| `sync`   | Sync active skills across all detected IDEs                            |
+| `status` | Show active stage, detected IDEs, installed skills, and stash contents |
+| `init`   | Initialize `skills-lock.json`, `skills.rules`, and update `.gitignore` |
+| `add`    | Assign a skill to a stage (`skill`, `stage`, optional `track`)         |
+| `remove` | Remove a skill from a stage or all stages                              |
+| `use`    | Activate a stage or restore everything with `off: true`                |
+| `list`   | List all skills with stages, install status, and git tracking          |
+| `ignore` | Regenerate the `.gitignore` block                                      |
+
+### Configure in Claude Code
+
+Add to your project's `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "skill-rules": {
+      "command": "npx",
+      "args": ["-y", "skill-rules", "mcp"]
+    }
+  }
+}
+```
+
+Or add globally in `~/.claude/settings.json` (requires global install):
+
+```json
+{
+  "mcpServers": {
+    "skill-rules": {
+      "command": "sr",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+Once connected, Claude can call `sync`, `status`, `use`, and any other tool directly from the conversation — no CLI needed.
+
+---
+
 ## Configuration files
 
 ### `skills-lock.json`

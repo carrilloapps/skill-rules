@@ -24,7 +24,10 @@ skill-rules/
 │       ├── use.jsx          # sr use
 │       ├── list.jsx         # sr list
 │       ├── ignore.jsx       # sr ignore
-│       └── help.jsx         # sr help
+│       ├── help.jsx         # sr help
+│       └── mcp.js           # sr mcp (starts MCP server)
+├── src/mcp/
+│   └── server.js            # MCP server — 8 tools, stdio transport
 ├── src/lib/                 # pure logic — no UI dependencies
 │   ├── ides.js              # IDE registry and detection
 │   ├── lock.js              # skills-lock.json I/O
@@ -69,6 +72,7 @@ CI runs exactly: `npm ci → build → lint → format:check → test:coverage �
 
 - **Runtime**: Node.js ESM, no TypeScript, JSX via esbuild
 - **Terminal UI**: React 18 + Ink v5 + `@inkjs/ui` v2 (MultiSelect, TextInput, Spinner)
+- **MCP**: `@modelcontextprotocol/sdk` v1.x — `Server` class, stdio transport, JSON Schema tools
 - **CLI framework**: commander v12
 - **Build**: esbuild (`packages: 'external'`, format `esm`, shebang banner)
 - **Tests**: vitest v4 with `@vitest/coverage-v8`
@@ -174,6 +178,30 @@ All `package.json` ranges use `~` (tilde — patch-only). Do not change to `^`.
 Key peer dep constraint: `eslint-plugin-react@7.x` supports only ESLint up to `~9.39.x`. Do not upgrade ESLint to v10 without first verifying the plugin supports it.
 
 Node.js minimum: `>=20`. `vitest@4.x` uses `rolldown` which requires `node:util.styleText` (Node 20.12+).
+
+## MCP server
+
+`sr mcp` starts a stdio MCP server (`src/mcp/server.js`) that exposes all skill-rules operations as tools: `sync`, `status`, `init`, `add`, `remove`, `use`, `list`, `ignore`. The server is bundled into `dist/index.js` alongside the CLI.
+
+Key design decisions:
+
+- **No Ink/React.** Uses the `@modelcontextprotocol/sdk` `Server` class directly with JSON Schema tool definitions. Pure Node.js logic via the same `src/lib/` modules used by the commands.
+- **CWD fixed at server start.** `process.cwd()` is captured once in `startMcpServer()` and reused by all tool handlers. The server must be started from the project root.
+- **No confirmation prompts.** The `use` tool executes the stash/restore plan immediately — the calling agent is the decision-maker, unlike the interactive CLI which asks the user.
+- **`src/mcp/` is excluded from the 100% coverage requirement** (only `src/lib/**` is enforced). The MCP server is integration-tested manually.
+
+Configure in Claude Code via `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "skill-rules": {
+      "command": "npx",
+      "args": ["-y", "skill-rules", "mcp"]
+    }
+  }
+}
+```
 
 ## Publishing
 
