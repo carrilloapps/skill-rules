@@ -1,6 +1,6 @@
 {
   "name": "skill-rules",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Sync AI agent skills across Claude Code, Cursor, Windsurf and more — activate per-environment rule sets with one command",
   "type": "module",
   "bin": {

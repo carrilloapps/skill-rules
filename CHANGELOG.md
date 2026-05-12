@@ -9,8 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+---
+
+## [0.2.0] — 2026-05-12
+
 ### Added
 
+- **OpenCode** IDE support — detects `.opencode/` and syncs skills to `.opencode/skills/` natively
 - `sr help` — styled Ink command listing all commands and options
 
 ### Removed
@@ -38,5 +43,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Git tracking — individual skills can be committed to the repository via `--track` or `sr list`
 - `sr` short alias registered alongside `skill-rules` in `package.json` bin
 
-[Unreleased]: https://github.com/carrilloapps/skill-rules/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/carrilloapps/skill-rules/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/carrilloapps/skill-rules/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/carrilloapps/skill-rules/releases/tag/v0.1.0
